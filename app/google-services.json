@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "815881575969",
+    "firebase_url": "https://eapandroid-e8083.firebaseio.com",
+    "project_id": "eapandroid-e8083",
+    "storage_bucket": "eapandroid-e8083.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815881575969:android:8a7df95eabbbaabd",
+        "android_client_info": {
+          "package_name": "com.example.morejump.bussu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "815881575969-de65bgqsdf60qk7re2i4ngn0un77vume.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6pMJZpfz_N_UHvZciQzpj9gEoUhSPovI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
