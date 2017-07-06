@@ -22,11 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OrderWord extends AppCompatActivity implements View.OnTouchListener {
-    // Each textview has an unique Id which is used to determine  x, y coordinate to come back
     // Generating a rectange dynamically ===>  keeping a space when removing bringToFront;
-    // How to make textview get back first location//
-    // Save first location and then ====>
-
     float dX, dY;
     boolean isDown;
     TextView txt01;
@@ -46,16 +42,6 @@ public class OrderWord extends AppCompatActivity implements View.OnTouchListener
 
         FlexboxLayout flexboxLayout = (FlexboxLayout) findViewById(R.id.MyFlex);
         flexboxLayout.removeAllViews();
-       // flexboxLayout.invalidate();
-        //flexboxLayout.requestLayout();
-        //
-      /*  txt01= new TextView(this);
-        txt01.setText("click me!!! plz");
-        txt01.setTextColor(Color.BLACK);
-        txt01.setBackgroundColor(Color.RED);
-        txt01.setPadding(48,48,48,48);*/
-       // flexboxLayout.addView(txt01);
-        //
         for (int i=0; i<10;i++){
             TextView txtview = new TextView(this);
             txtview.setText("thao 0"+i);
@@ -70,8 +56,6 @@ public class OrderWord extends AppCompatActivity implements View.OnTouchListener
             FlexboxLayout.LayoutParams lp = (FlexboxLayout.LayoutParams) view.getLayoutParams();
             lp.setMargins(16,16,16,0);
             view.setLayoutParams(lp);
-           // Log.d("thaohandsome", "getX: "+txtview.getX());
-            //Log.d("thaohandsome", "getY: "+txtview.getY());
 
         }
         gestureDetector = new GestureDetector(this, new SingleTapConfirm());
@@ -79,47 +63,12 @@ public class OrderWord extends AppCompatActivity implements View.OnTouchListener
 
     private void init() {
         coordiantesList = new HashMap<String, Coordinates>();
-        // giữ cẩn thận mấy dòng này nhé =====>
-        // adding button dynamically
-        /*txt01.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (gestureDetector.onTouchEvent(motionEvent)) {
-                    dX = view.getX() - motionEvent.getRawX();
-                    dY = view.getY() - motionEvent.getRawY();
-                    view.animate()
-                            .x(100)
-                            .y(100)
-                            .setDuration(100)
-                            .start();
-                    return true;
-                }
-                if (MotionEvent.ACTION_MOVE == motionEvent.getAction()) {
-                   //txt01.bringToFront();
-                    view.animate()
-                            .x(motionEvent.getRawX() + dX)
-                            .y(motionEvent.getRawY() + dY)
-                            .setDuration(0)
-                            .start();
-                }
-                if (MotionEvent.ACTION_UP == motionEvent.getAction()) {
-                    //txt01.bringToFront();
-                    view.animate()
-                            .x(300)
-                            .y(300)
-                            .setDuration(100)
-                            .start();
-                }
-                return false;
-            }
-        });*/
     }
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         if (gestureDetector.onTouchEvent(motionEvent)) {
             // when tapping a button
-            Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
             Coordinates coordinates= new Coordinates();
             coordinates.X= view.getX();
             coordinates.Y= view.getY();
@@ -155,7 +104,6 @@ public class OrderWord extends AppCompatActivity implements View.OnTouchListener
                 break;
 */
             case MotionEvent.ACTION_MOVE:
-               // Toast.makeText(this, "move", Toast.LENGTH_SHORT).show();
                 view.animate()
                         .x(motionEvent.getRawX() + dX)
                         .y(motionEvent.getRawY() + dY)
@@ -163,9 +111,6 @@ public class OrderWord extends AppCompatActivity implements View.OnTouchListener
                         .start();
                 break;
             case  MotionEvent.ACTION_UP:
-                    //lúc thả ra thì quay lại vị trí ban dầu
-                    // using id to determine that location view
-                    Toast.makeText(this, "Up", Toast.LENGTH_SHORT).show();
                     Coordinates coordinates1= coordiantesList.get(Integer.toString(view.getId()));
                     Log.d("moveup", "coordinates1.X: "+view.getId());
                     Log.d("moveup", "coordinates1.X: "+coordinates1.X);
@@ -181,14 +126,12 @@ public class OrderWord extends AppCompatActivity implements View.OnTouchListener
         }
         return true;
     }
-    // class
     private  class Coordinates{
         public  float X;
         public  float Y;
 
     }
 
-    // class
     private class SingleTapConfirm extends GestureDetector.SimpleOnGestureListener {
 
         @Override
