@@ -8,49 +8,15 @@
 
     <com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/MyFlex"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:alignContent="flex_start"
         app:alignItems="flex_start"
         app:flexDirection="row"
         app:flexWrap="wrap">
-
-        <TextView
-            android:id="@+id/textview1"
-            android:padding="25dp"
-            android:layout_marginBottom="24dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
-            android:text="thao handsome" />
-
-        <TextView
-            android:id="@+id/textview2"
-            android:padding="25dp"
-            android:layout_marginBottom="24dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/yellow"
-            android:text="hihihi" />
-
-        <TextView
-            android:id="@+id/textview3"
-            android:padding="25dp"
-            android:layout_marginRight="16dp"
-            android:textAlignment="center"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
-            android:text="thu nhe" />
-
-        <TextView
-            android:id="@+id/textview4"
-            android:layout_width="160dp"
-            android:padding="25dp"
-            android:layout_height="wrap_content"
-            android:background="@color/red"
-            android:text="thu nhe" />
     </com.google.android.flexbox.FlexboxLayout>
 
 </RelativeLayout>
