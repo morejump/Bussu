@@ -1,45 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.morejump.bussu.OrderWord">
-    <com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/MyFlexGet"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:alignContent="flex_start"
-        app:alignItems="flex_start"
-        app:flexDirection="row"
-        app:flexWrap="wrap">
-
-
-    </com.google.android.flexbox.FlexboxLayout>
-
-    <FrameLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/MyFlex"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
+        <TextView
+            android:text="Đặt các từ đúng thứ tự để tạo thành câu"
+            android:layout_marginTop="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:textSize="24dp"
+            android:textAlignment="center"
+            android:textColor="#4DB2F6"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:alignContent="flex_end"
-            app:alignItems="flex_start"
-            app:flexDirection="row"
-            app:flexWrap="wrap">
+            android:layout_height="wrap_content" />
+        <FrameLayout
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+                // layout bên dưới
+                <FrameLayout
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:background="#D6DEE6"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp">
 
-        </com.google.android.flexbox.FlexboxLayout>
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:id="@+id/FillFlexBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:alignContent="flex_start"
+                            app:alignItems="flex_start"
+                            app:flexDirection="row"
+                            app:flexWrap="wrap"
+                            >
+                                <TextView
+                                    android:background="@color/colorAccent"
+                                    android:text="thao dep trai"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
 
+                        </com.google.android.flexbox.FlexboxLayout>
+                        <TextView
+                            android:id="@+id/txtGuide"
+                            android:text="Kéo từ vào đây"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                </FrameLayout>
 
-    </FrameLayout>
+                // flexlayout bên trên // chứa chữ
+                <com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/DisplayFlexBox"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:alignContent="flex_end"
+                    app:alignItems="flex_end"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap">
+                </com.google.android.flexbox.FlexboxLayout>
+        </FrameLayout>
 
-
-</RelativeLayout>
+</LinearLayout>
