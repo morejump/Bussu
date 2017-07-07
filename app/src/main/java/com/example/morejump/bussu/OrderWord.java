@@ -17,17 +17,23 @@ import android.widget.Toast;
 
 import com.google.android.flexbox.FlexboxLayout;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class OrderWord extends AppCompatActivity implements View.OnTouchListener {
-    // Generating a rectange dynamically ===>  keeping a space when removing bringToFront;
+    // create a new flexbox
     float dX, dY;
-    boolean isDown;
+    List<String> listButton= new ArrayList<>();
     TextView txt01;
     private GestureDetector gestureDetector;
-    Map<String, Coordinates> coordiantesList ;
+    Map<String, Coordinates> coordiantesList;
+    FlexboxLayout flexboxLayout;
+   // FlexboxLayout flexboxLayoutGet;
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,30 +41,37 @@ public class OrderWord extends AppCompatActivity implements View.OnTouchListener
         setContentView(R.layout.activity_order_word);
         findView();
         init();
-
     }
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private  void findView(){
 
-        FlexboxLayout flexboxLayout = (FlexboxLayout) findViewById(R.id.MyFlex);
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void findView() {
+        listButton.add("Vi");
+        listButton.add("Thao");
+        listButton.add("Dep");
+        listButton.add("Trai");
+        listButton.add("Nhe");
+        gestureDetector = new GestureDetector(this, new ScaleListener());
+        flexboxLayout = (FlexboxLayout) findViewById(R.id.MyFlex);
+        //flexboxLayoutGet = (FlexboxLayout) findViewById(R.id.MyFlexGet);
         flexboxLayout.removeAllViews();
-        for (int i=0; i<10;i++){
+        //flexboxLayoutGet.removeAllViews();
+        for (int i = 0; i < 4; i++) {
             TextView txtview = new TextView(this);
-            txtview.setText("thao 0"+i);
+            txtview.setText(listButton.get(i));
             txtview.setId(i);
+            txtview.setClickable(true);
             txtview.setElevation(8);
             txtview.setOnTouchListener(this);
             txtview.setBackgroundColor(Color.WHITE);
-            txtview.setPadding(48,48,48,48);
+            txtview.setPadding(48, 48, 48, 48);
             txtview.setTextColor(Color.BLACK);
             flexboxLayout.addView(txtview);
             View view = flexboxLayout.getChildAt(i);
             FlexboxLayout.LayoutParams lp = (FlexboxLayout.LayoutParams) view.getLayoutParams();
-            lp.setMargins(16,16,16,0);
+            lp.setMargins(16, 16, 16, 0);
             view.setLayoutParams(lp);
 
         }
-        gestureDetector = new GestureDetector(this, new SingleTapConfirm());
     }
 
     private void init() {
@@ -67,82 +80,79 @@ public class OrderWord extends AppCompatActivity implements View.OnTouchListener
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
+
         if (gestureDetector.onTouchEvent(motionEvent)) {
+            Toast.makeText(this, "Tapped", Toast.LENGTH_SHORT).show();
             // when tapping a button
-            Coordinates coordinates= new Coordinates();
-            coordinates.X= view.getX();
-            coordinates.Y= view.getY();
-            coordiantesList.put(Integer.toString(view.getId()),coordinates);
+            // saving a coordiantes of view
+            Coordinates coordinates = new Coordinates();
+            coordinates.X = view.getX();
+            coordinates.Y = view.getY();
+            //
+            coordiantesList.put(Integer.toString(view.getId()), coordinates);
+            // get first coordiantes
             dX = view.getX() - motionEvent.getRawX();
             dY = view.getY() - motionEvent.getRawY();
+
+            //TextView txtView = new TextView(this);
+            //txtView.setText("add more");
+            //txtView= (TextView) view;
+            // flexboxLayout.removeView(view);
+            //flexboxLayoutGet.addView(txtView);
             view.animate()
                     .x(100)
                     .y(100)
-                    .setDuration(100)
+                    .setDuration(0)
                     .start();
             return true;
-        }
-        // do other actions
 
-        switch (motionEvent.getAction()) {
-
-            /*case MotionEvent.ACTION_DOWN:
-                Toast.makeText(this, "Down", Toast.LENGTH_SHORT).show();
-                isDown=true;
-                dX = view.getX() - motionEvent.getRawX();
-                dY = view.getY() - motionEvent.getRawY();
-                // lúc touch xuống thì lấy tọa độ của view và id ==> gán vào dictionary==> tìm kiếm khi touch up
-                Coordinates coordinates= new Coordinates();
-                coordinates.X= view.getX();
-                coordinates.Y= view.getY();
-                coordiantesList.put(Integer.toString(view.getId()),coordinates);
-                //
-                Log.d("thaohandsome", "dX: "+view.getX());
-                Log.d("thaohandsome", "dY: "+view.getY());
-                Log.d("thaohandsome", "viewID: "+view.getId());
-
-                break;
-*/
-            case MotionEvent.ACTION_MOVE:
+        } else {
+            switch (motionEvent.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    Coordinates coordinates = new Coordinates();
+                    coordinates.X = view.getX();
+                    coordinates.Y = view.getY();
+                    //
+                    coordiantesList.put(Integer.toString(view.getId()), coordinates);
+                    // get first coordiantes
+                    dX = view.getX() - motionEvent.getRawX();
+                    dY = view.getY() - motionEvent.getRawY();
+                    break;
+                case MotionEvent.ACTION_MOVE:
                 view.animate()
                         .x(motionEvent.getRawX() + dX)
                         .y(motionEvent.getRawY() + dY)
                         .setDuration(0)
                         .start();
-                break;
-            case  MotionEvent.ACTION_UP:
-                    Coordinates coordinates1= coordiantesList.get(Integer.toString(view.getId()));
-                    Log.d("moveup", "coordinates1.X: "+view.getId());
+                    break;
+                case MotionEvent.ACTION_UP:
+                    // when dropping , a view comback first location
+                    Coordinates coordinates1 = coordiantesList.get(Integer.toString(view.getId()));
+                    Log.d("moveup", "coordinates1.X: " + view.getId());
                     Log.d("moveup", "coordinates1.X: "+coordinates1.X);
                     Log.d("moveup", "coordinates1.Y: "+coordinates1.Y);
                     view.animate()
                             .x(coordinates1.X)
                             .y(coordinates1.Y)
-                            .setDuration(100)
+                            .setDuration(0)
                             .start();
-                break;
-            default:
-                return false;
-        }
-        return true;
-    }
-    private  class Coordinates{
-        public  float X;
-        public  float Y;
+                    break;
+            }
 
+        }
+        return false;
     }
 
-    private class SingleTapConfirm extends GestureDetector.SimpleOnGestureListener {
+    private class Coordinates {
+        public float X;
+        public float Y;
 
+    }
+
+    private class ScaleListener extends GestureDetector.SimpleOnGestureListener {
         @Override
-        public boolean onSingleTapUp(MotionEvent event) {
+        public boolean onSingleTapUp(MotionEvent e) {
             return true;
         }
-
-        @Override
-        public boolean onDown(MotionEvent e) {
-            return true;
-        }
-
     }
 }

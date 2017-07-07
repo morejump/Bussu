@@ -5,10 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.morejump.bussu.OrderWord">
-
     <com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/MyFlex"
+        android:id="@+id/MyFlexGet"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_width="match_parent"
@@ -17,6 +16,30 @@
         app:alignItems="flex_start"
         app:flexDirection="row"
         app:flexWrap="wrap">
+
+
     </com.google.android.flexbox.FlexboxLayout>
+
+    <FrameLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/MyFlex"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:alignContent="flex_end"
+            app:alignItems="flex_start"
+            app:flexDirection="row"
+            app:flexWrap="wrap">
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+
+    </FrameLayout>
+
 
 </RelativeLayout>

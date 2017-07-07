@@ -14,20 +14,21 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
         <activity android:name=".DownloadDialogActitivity" />
-        <activity android:name=".MachingSentenceActivity">
-
-        </activity>
+        <activity android:name=".MachingSentenceActivity"></activity>
         <activity android:name=".Firebase" />
         <activity android:name=".Firebase01" />
         <activity android:name=".FillSentenceAudio" />
-        <activity android:name=".SpannableTextview"></activity>
-        <activity android:name=".MySpanable"></activity>
+        <activity android:name=".SpannableTextview" />
+        <activity android:name=".MySpanable" />
         <activity android:name=".OrderWord">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".Touch">
+
         </activity>
     </application>
 
